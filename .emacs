@@ -19,8 +19,8 @@
 
 (setq company-backends (delete 'company-semantic company-backends))
 (add-to-list 'company-backends 'company-c-headers)
-(define-key c-mode-map  [(tab)] 'company-complete)
-(define-key c++-mode-map  [(tab)] 'company-complete)
+(define-key c-mode-map (kbd "C-SPC") 'company-complete)
+(define-key c++-mode-map (kbd "C-SPC") 'company-complete)
 
 (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
 (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
