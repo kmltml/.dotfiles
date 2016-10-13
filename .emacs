@@ -50,6 +50,14 @@
 (set-face-background 'git-gutter:added    "dark green")
 (set-face-background 'git-gutter:deleted  "dark red")
 
+(require 'indent-guide)
+
+(indent-guide-global-mode)
+
+(setq indent-guide-recursive t)
+
+(setq indent-guide-char "│")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
