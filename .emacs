@@ -39,6 +39,17 @@
 
 (semantic-mode 1)
 
+(electric-pair-mode)
+
+(global-set-key (kbd "<escape>") `keyboard-quit)
+
+(require `git-gutter)
+(global-git-gutter-mode t)
+
+(set-face-background 'git-gutter:modified "dark orange") ;; background color
+(set-face-background 'git-gutter:added    "dark green")
+(set-face-background 'git-gutter:deleted  "dark red")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -49,7 +60,12 @@
     ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/")))
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages (quote (company-c-headers company sr-speedbar ggtags)))
- '(speedbar-default-position (quote left)))
+ '(speedbar-default-position (quote left))
+ ;; git-gutter
+ '(git-gutter:update-interval 10)
+ '(git-gutter:modified-sign " ")
+ '(git-gutter:deleted-sign " ")
+ '(git-gutter:added-sign " "))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
