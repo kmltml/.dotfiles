@@ -44,6 +44,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-c-headers-path-system
+   (quote
+    ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/")))
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages (quote (company-c-headers company sr-speedbar ggtags)))
  '(speedbar-default-position (quote left)))
