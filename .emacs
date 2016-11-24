@@ -19,6 +19,7 @@
 
 (setq company-backends (delete 'company-semantic company-backends))
 (add-to-list 'company-backends 'company-c-headers)
+(add-to-list 'company-backends 'company-irony)
 (define-key c-mode-map (kbd "C-SPC") 'company-complete)
 (define-key c++-mode-map (kbd "C-SPC") 'company-complete)
 
@@ -37,13 +38,55 @@
 (global-semanticdb-minor-mode 1)
 (global-semantic-idle-scheduler-mode 1)
 
+(global-semantic-idle-summary-mode 1)
+
+(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+
 (semantic-mode 1)
+
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 (electric-pair-mode)
 
-(global-set-key (kbd "<escape>") `keyboard-quit)
+(global-set-key (kbd "<escape>") 'keyboard-quit)
+(global-set-key (kbd "S-<delete>") 'kill-whole-line)
+(global-set-key (kbd "<f5>") 'projectile-compile-project)
+(define-key c++-mode-map (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
+(define-key c++-mode-map (kbd "C-c o") 'ff-find-other-file)
 
-(require `git-gutter)
+(setq-default cursor-type `(bar . 2))
+
+(global-auto-revert-mode)
+
+(delete-selection-mode 1)
+
+
+(defun stubgen () (interactive)
+  (shell-command (concat "stubgen -lNn " (buffer-file-name))))
+
+(defun move-line-up ()
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2))
+
+(global-set-key (kbd "M-<up>") 'move-line-up)
+
+(defun move-line-down ()
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1))
+
+(global-set-key (kbd "M-<down>") 'move-line-down)
+
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+(require 'git-gutter)
 (global-git-gutter-mode t)
 
 (set-face-background 'git-gutter:modified "dark orange") ;; background color
@@ -54,9 +97,9 @@
 
 (indent-guide-global-mode)
 
-(setq indent-guide-recursive t)
+(setq-default indent-guide-recursive t)
 
-(setq indent-guide-char "│")
+(setq-default indent-guide-char "│")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -65,7 +108,7 @@
  ;; If there is more than one, they won't work right.
  '(company-c-headers-path-system
    (quote
-    ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/")))
+    ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/")))
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages (quote (company-c-headers company sr-speedbar ggtags)))
  '(speedbar-default-position (quote left))
