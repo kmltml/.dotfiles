@@ -61,6 +61,12 @@
 
 (delete-selection-mode 1)
 
+(prefer-coding-system 'utf-8)
+(setq coding-system-for-read 'utf-8)
+(setq coding-system-for-write 'utf-8)
+
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 
 (defun stubgen () (interactive)
   (shell-command (concat "stubgen -lNn " (buffer-file-name))))
@@ -100,6 +106,15 @@
 (setq-default indent-guide-recursive t)
 
 (setq-default indent-guide-char "│")
+
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+    
+(setq mouse-wheel-progressive-speed nil)
+
+;; HTML + JS editting stuff
+(add-to-list 'company-backends 'company-tern)
+
+(add-hook 'html-mode-hook 'emmet-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
