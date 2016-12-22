@@ -6,6 +6,8 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(load "~/.emacs.local" 'missing-ok)
+
 (require 'ggtags)
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -49,10 +51,11 @@
 
 (electric-pair-mode)
 
-(global-set-key (kbd "<escape>") 'keyboard-quit)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(define-key company-active-map (kbd "<escape>") 'company-abort)
 (global-set-key (kbd "S-<delete>") 'kill-whole-line)
 (global-set-key (kbd "<f5>") 'projectile-compile-project)
-(define-key c++-mode-map (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
+(global-set-key (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
 (define-key c++-mode-map (kbd "C-c o") 'ff-find-other-file)
 
 (setq-default cursor-type `(bar . 2))
@@ -111,10 +114,28 @@
     
 (setq mouse-wheel-progressive-speed nil)
 
+(setq read-file-name-completion-ignore-case 't)
+
+(global-set-key (kbd "C-c SPC") 'company-complete)
+
 ;; HTML + JS editting stuff
 (add-to-list 'company-backends 'company-tern)
 
 (add-hook 'html-mode-hook 'emmet-mode)
+
+;; Rust stuff
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+
+(add-hook 'cargo-process-mode-hook (lambda () (setq truncate-lines nil)))
+
+(define-key rust-mode-map (kbd "C-c s") 'find-rust-symbols)
+
+(defun find-rust-symbols ()
+  (interactive)
+  (occur "\\<fn\\>\\|\\<struct\\>\\|\\<enum\\>\\|\\<impl\\>")
+  (switch-to-buffer-other-window "*Occur*"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
