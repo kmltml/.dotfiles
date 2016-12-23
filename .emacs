@@ -1,3 +1,5 @@
+(require 'use-package)
+
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
@@ -89,6 +91,24 @@
 
 (global-set-key (kbd "M-<down>") 'move-line-down)
 
+(defun custom-move-to-beginning-of-line ()
+  (interactive "^")
+  (let ((point-before-move (point)))
+    (back-to-indentation)
+    (when (= point-before-move (point))
+      (move-beginning-of-line nil))))
+
+(global-set-key (kbd "C-a") 'custom-move-to-beginning-of-line)
+(global-set-key (kbd "<home>") 'custom-move-to-beginning-of-line)
+
+(require 'neotree)
+(global-set-key (kbd "<f8>") 'neotree)
+
+(define-key neotree-mode-map (kbd "<escape>")
+  (lambda ()
+    (interactive)
+    (select-window (previous-window))))
+
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
@@ -118,6 +138,12 @@
 
 (global-set-key (kbd "C-c SPC") 'company-complete)
 
+(with-eval-after-load 'expand-region
+  (global-set-key (kbd "C-c w") 'er/expand-region))
+
+
+(use-package magit
+  :bind (("C-x g" . magit-status)))
 ;; HTML + JS editting stuff
 (add-to-list 'company-backends 'company-tern)
 
@@ -129,6 +155,8 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 
 (add-hook 'cargo-process-mode-hook (lambda () (setq truncate-lines nil)))
+
+(require 'rust-mode )
 
 (define-key rust-mode-map (kbd "C-c s") 'find-rust-symbols)
 
@@ -146,13 +174,15 @@
    (quote
     ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/")))
  '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages (quote (company-c-headers company sr-speedbar ggtags)))
- '(speedbar-default-position (quote left))
- ;; git-gutter
- '(git-gutter:update-interval 10)
- '(git-gutter:modified-sign " ")
+ '(git-gutter:added-sign " ")
  '(git-gutter:deleted-sign " ")
- '(git-gutter:added-sign " "))
+ '(git-gutter:modified-sign " ")
+ '(git-gutter:update-interval 10)
+ '(neo-theme (quote classic))
+ '(neo-vc-integration (quote (face char)))
+ '(neo-window-width 40)
+ '(package-selected-packages (quote (company-c-headers company sr-speedbar ggtags)))
+ '(speedbar-default-position (quote left)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
