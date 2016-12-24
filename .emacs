@@ -1,12 +1,14 @@
-(require 'use-package)
-
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
+
+(package-initialize)
+
+(require 'use-package)
+
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
 
 (load "~/.emacs.local" 'missing-ok)
 
@@ -148,6 +150,12 @@
 (add-to-list 'company-backends 'company-tern)
 
 (add-hook 'html-mode-hook 'emmet-mode)
+
+;; math-input-mode
+(use-package xah-math-input-mode
+  :bind (:map xah-math-input-keymap
+	 ("S-SPC" . nil)
+	 ("C-c e" . xah-math-input-change-to-symbol)))
 
 ;; Rust stuff
 (add-hook 'rust-mode-hook #'racer-mode)
