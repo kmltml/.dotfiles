@@ -17,8 +17,6 @@
 
 (setenv "SSH_ASKPASS" "git-gui--askpass")
 
-(set-frame-font "Fira Code 11" nil t)
-
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
@@ -76,7 +74,6 @@
 
 (semantic-mode 1)
 
-(show-paren-mode 1)
 (setq show-paren-delay 0)
 
 (electric-pair-mode)
@@ -97,9 +94,6 @@
 (prefer-coding-system 'utf-8)
 (setq coding-system-for-read 'utf-8)
 (setq coding-system-for-write 'utf-8)
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
 
 (defun stubgen () (interactive)
   (shell-command (concat "stubgen -lNn " (buffer-file-name))))

@@ -20,6 +20,7 @@
  '(git-gutter:update-interval 10)
  '(haskell-process-path-stack "c:/Users/Kamil/AppData/Roaming/Local/bin/stack.exe")
  '(haskell-tags-on-save t)
+ '(menu-bar-mode nil)
  '(neo-theme (quote classic))
  '(neo-vc-integration (quote (face char)))
  '(neo-window-width 40)
@@ -31,7 +32,9 @@
     (smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc xah-math-input company-c-headers company sr-speedbar ggtags)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(projectile-mode t nil (projectile))
+ '(show-paren-mode t)
  '(speedbar-default-position (quote left))
+ '(tool-bar-mode nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -59,4 +62,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 113 :width normal))))
  '(ensime-implicit-highlight ((t (:underline "dim gray")))))
