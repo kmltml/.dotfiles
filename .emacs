@@ -17,7 +17,7 @@
 
 (setenv "SSH_ASKPASS" "git-gui--askpass")
 
-(add-to-list 'default-frame-alist '(font . "Fira Code"))
+(set-frame-font "Fira Code 11" nil t)
 
 (require 'recentf)
 (recentf-mode 1)
