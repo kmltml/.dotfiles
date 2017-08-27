@@ -12,7 +12,7 @@
 
 (load "~/.emacs.local" 'missing-ok)
 
-(setq custom-file (s-concat dotfiles-repo-path "emacs/custom.el"))
+(setq custom-file (concat dotfiles-repo-path "emacs/custom.el"))
 (load custom-file)
 
 (setenv "SSH_ASKPASS" "git-gui--askpass")
