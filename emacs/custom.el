@@ -11,7 +11,7 @@
  '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
  '(custom-safe-themes
    (quote
-    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "67e998c3c23fe24ed0fb92b9de75011b92f35d3e89344157ae0d544d50a63a72" "82b67c7e21c3b12be7b569af7c84ec0fb2d62105629a173e2479e1053cff94bd" "9d91458c4ad7c74cf946bd97ad085c0f6a40c370ac0a1cbeb2e3879f15b40553" default)))
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "8bb8a5b27776c39b3c7bf9da1e711ac794e4dc9d43e32a075d8aa72d6b5b3f59" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "67e998c3c23fe24ed0fb92b9de75011b92f35d3e89344157ae0d544d50a63a72" "82b67c7e21c3b12be7b569af7c84ec0fb2d62105629a173e2479e1053cff94bd" "9d91458c4ad7c74cf946bd97ad085c0f6a40c370ac0a1cbeb2e3879f15b40553" default)))
  '(fci-rule-color "#515151")
  '(flx-ido-mode t)
  '(git-gutter:added-sign " ")
@@ -19,6 +19,7 @@
  '(git-gutter:modified-sign " ")
  '(git-gutter:update-interval 10)
  '(haskell-process-path-stack "c:/Users/Kamil/AppData/Roaming/Local/bin/stack.exe")
+ '(haskell-process-suggest-hoogle-imports t)
  '(haskell-tags-on-save t)
  '(menu-bar-mode nil)
  '(neo-theme (quote classic))
@@ -29,7 +30,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc xah-math-input company-c-headers company sr-speedbar ggtags)))
+    (w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc xah-math-input company-c-headers company sr-speedbar ggtags)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(projectile-mode t nil (projectile))
  '(show-paren-mode t)
