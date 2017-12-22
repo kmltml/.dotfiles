@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   (vector "#cccccc" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc" "#66cccc" "#515151"))
+   (vector "#515151" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc" "#66cccc" "#cccccc"))
  '(company-c-headers-path-system
    (quote
     ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/")))
@@ -18,6 +18,11 @@
  '(git-gutter:deleted-sign " ")
  '(git-gutter:modified-sign " ")
  '(git-gutter:update-interval 10)
+ '(haskell-font-lock-symbols t)
+ '(haskell-font-lock-symbols-alist
+   (quote
+    (("\\" . λ)
+     ("." "∘" haskell-font-lock-dot-is-not-composition))))
  '(haskell-process-path-stack "c:/Users/Kamil/AppData/Roaming/Local/bin/stack.exe")
  '(haskell-process-suggest-hoogle-imports t)
  '(haskell-tags-on-save t)
@@ -30,7 +35,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc xah-math-input company-c-headers company sr-speedbar ggtags)))
+    (company-auctex latex-pretty-symbols auctex latex-preview-pane company-math ediprolog slime w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc xah-math-input company-c-headers company sr-speedbar ggtags)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(projectile-mode t nil (projectile))
  '(show-paren-mode t)
@@ -63,5 +68,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "outline" :slant normal :weight normal :height 113 :width normal))))
+ '(default ((t (:inherit nil :stipple nil :background "#2d2d2d" :foreground "#cccccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "outline" :family "DejaVu Sans Mono"))))
  '(ensime-implicit-highlight ((t (:underline "dim gray")))))

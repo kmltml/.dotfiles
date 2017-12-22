@@ -286,3 +286,7 @@
 
 ;; Org mode stuff
 (setq org-support-shift-select t)
+
+;; LaTeX stuff
+(when (string-equal "windows-nt" system-type)
+  (setq doc-view-ghostscript-program "gswin64c"))
