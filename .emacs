@@ -289,3 +289,6 @@
 ;; LaTeX stuff
 (when (string-equal "windows-nt" system-type)
   (setq doc-view-ghostscript-program "gswin64c"))
+
+;; Haskell
+(add-hook haskell-mode-hook 'interactive-haskell-mode)
