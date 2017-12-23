@@ -92,8 +92,7 @@
 (delete-selection-mode 1)
 
 (prefer-coding-system 'utf-8)
-(setq coding-system-for-read 'utf-8)
-(setq coding-system-for-write 'utf-8)
+(set-language-environment "UTF-8")
 
 (defun stubgen () (interactive)
   (shell-command (concat "stubgen -lNn " (buffer-file-name))))
