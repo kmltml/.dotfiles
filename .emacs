@@ -291,4 +291,8 @@
   (setq doc-view-ghostscript-program "gswin64c"))
 
 ;; Haskell
-(add-hook haskell-mode-hook 'interactive-haskell-mode)
+(use-package haskell-mode
+  :config
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
+
