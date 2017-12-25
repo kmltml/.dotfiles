@@ -296,3 +296,5 @@
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
 
+(use-package popup-imenu
+  :bind (("C-c i" . popup-imenu)))
