@@ -298,3 +298,10 @@
 
 (use-package popup-imenu
   :bind (("C-c i" . popup-imenu)))
+(use-package smartparens
+  :config
+  (sp-local-pair 'latex-mode "\\[" "\\]"))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (sp-pair "'" nil :actions :rem)))
