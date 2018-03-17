@@ -315,3 +315,6 @@
                           (bookmarks . 5)
                           (projects . 5)
                           (registers . 5))))
+
+(use-package zzz-to-char
+  :bind (("M-z" . #'zzz-up-to-char)))
