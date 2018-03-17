@@ -260,6 +260,7 @@
 (add-to-list 'company-backends 'company-tern)
 
 (add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
 
 ;; math-input-mode
 (use-package xah-math-input-mode
@@ -270,6 +271,7 @@
 ;; Rust stuff
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'racer-mode-hook (lambda () (setq company-idle-delay nil)))
 (add-hook 'racer-mode-hook #'eldoc-mode)
 
 (add-hook 'cargo-process-mode-hook (lambda () (setq truncate-lines nil)))

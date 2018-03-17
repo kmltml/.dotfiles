@@ -35,9 +35,10 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (restclient request company-auctex latex-pretty-symbols auctex latex-preview-pane company-math ediprolog slime w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc xah-math-input company-c-headers company sr-speedbar ggtags)))
+    (web-mode image+ cargo racer company-racer restclient request company-auctex latex-pretty-symbols auctex latex-preview-pane company-math ediprolog slime w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc xah-math-input company-c-headers company sr-speedbar ggtags)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(projectile-mode t nil (projectile))
+ '(safe-local-variable-values (quote ((eval defun))))
  '(show-paren-mode t)
  '(speedbar-default-position (quote left))
  '(tool-bar-mode nil)
@@ -62,7 +63,9 @@
      (320 . "#f99157")
      (340 . "#ffcc66")
      (360 . "#99cc99"))))
- '(vc-annotate-very-old-color nil))
+ '(vc-annotate-very-old-color nil)
+ '(web-mode-auto-close-style 2)
+ '(web-mode-markup-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
