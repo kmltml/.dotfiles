@@ -260,3 +260,10 @@
 
 (use-package zzz-to-char
   :bind (("M-z" . #'zzz-up-to-char)))
+
+(use-package crux
+  :bind (("C-<return>" . crux-smart-open-line-above)
+         ("S-<return>" . crux-smart-open-line)
+         ("C-c e" . crux-eval-and-replace)
+         ("C-c d" . crux-duplicate-current-line-or-region)
+         ("C-c k" . crux-kill-whole-line)))

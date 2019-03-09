@@ -41,7 +41,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (hydra ensime zzz-to-char indent-guide git-gutter magit dashboard use-package ein-mumamo ein erlang projectile-ripgrep nasm-mode ripgrep edit-server tide shm web-mode image+ cargo racer company-racer request company-auctex latex-pretty-symbols latex-preview-pane company-math ediprolog slime w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc company-c-headers company sr-speedbar ggtags)))
+    (crux hydra ensime zzz-to-char indent-guide git-gutter magit dashboard use-package ein-mumamo ein erlang projectile-ripgrep nasm-mode ripgrep edit-server tide shm web-mode image+ cargo racer company-racer request company-auctex latex-pretty-symbols latex-preview-pane company-math ediprolog slime w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc company-c-headers company sr-speedbar ggtags)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(projectile-mode t nil (projectile))
  '(safe-local-variable-values (quote ((eval defun))))
