@@ -41,6 +41,18 @@
 (global-set-key (kbd "<f5>") 'projectile-compile-project)
 (global-set-key (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
 
+(defun term-dwim ()
+  (interactive)
+  (if (equalp major-mode 'term-mode)
+      (delete-window)
+    (let ((window (split-window nil -10)))
+      (select-window window)
+      (if (equalp (get-buffer "*terminal*") nil)
+          (call-interactively 'term)
+        (display-buffer "*terminal*" display-buffer--same-window-action)))))
+
+(global-set-key (kbd "C-c t") 'term-dwim)
+
 (setq-default cursor-type `(bar . 2))
 
 (global-auto-revert-mode)
