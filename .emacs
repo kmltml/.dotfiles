@@ -42,6 +42,16 @@
 (global-set-key (kbd "S-<delete>") 'kill-whole-line)
 (global-set-key (kbd "<f5>") 'projectile-compile-project)
 (global-set-key (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
+(global-set-key (kbd "C-c c") 'compile)
+
+(add-hook 'c-mode-hook
+          (lambda ()
+            (add-to-list 'prettify-symbols-alist '("->" . 8594))
+            (add-to-list 'prettify-symbols-alist '("^" . 8853))
+            (add-to-list 'prettify-symbols-alist '(">=" . 8805))
+            (add-to-list 'prettify-symbols-alist '("<=" . 8804))
+            (add-to-list 'prettify-symbols-alist '("NULL" . 8709))
+            (prettify-symbols-mode)))
 
 (defun term-dwim ()
   (interactive)
@@ -167,7 +177,7 @@
   :bind (:map company-active-map
               ("<escape>" . company-abort))
   :config
-  (add-hook 'after-init-hook 'global-company-mode)
+  (global-company-mode)
   (global-set-key (kbd "C-c SPC") 'company-complete))
 
 (use-package scala-mode
