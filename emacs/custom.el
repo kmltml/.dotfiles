@@ -3,8 +3,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(agda2-highlight-level (quote non-interactive))
  '(ansi-color-names-vector
    (vector "#515151" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc" "#66cccc" "#cccccc"))
+ '(calc-highlight-selections-with-faces t)
  '(company-c-headers-path-system
    (quote
     ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/")))
@@ -21,6 +23,7 @@
  '(git-gutter:deleted-sign " ")
  '(git-gutter:modified-sign " ")
  '(git-gutter:update-interval 10)
+ '(graphviz-dot-indent-width 2)
  '(haskell-font-lock-symbols t)
  '(haskell-font-lock-symbols-alist
    (quote
@@ -32,6 +35,8 @@
  '(ido-ignore-files
    (quote
     ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.agdai")))
+ '(js-indent-level 2)
+ '(magit-diff-refine-hunk (quote all))
  '(menu-bar-mode nil)
  '(neo-theme (quote classic))
  '(neo-vc-integration (quote (face char)))
@@ -39,11 +44,24 @@
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
- '(package-selected-packages
+ '(org-link-frame-setup
    (quote
-    (crux hydra ensime zzz-to-char indent-guide git-gutter magit dashboard use-package ein-mumamo ein erlang projectile-ripgrep nasm-mode ripgrep edit-server tide shm web-mode image+ cargo racer company-racer request company-auctex latex-pretty-symbols latex-preview-pane company-math ediprolog slime w3m idris-mode sourcerer-theme smartparens popup-imenu emmet-mode ssh-agency avy hl-line+ color-theme-sanityinc-tomorrow flx-ido expand-region projectile idea-darkula-theme company-ghci typescript-mode company-tern company-ghc company-c-headers company sr-speedbar ggtags)))
+    ((vm . vm-visit-folder-other-frame)
+     (vm-imap . vm-visit-imap-folder-other-frame)
+     (gnus . org-gnus-no-new-news)
+     (file . find-file)
+     (wl . wl-other-frame))))
+ '(package-selected-packages
+   '(avy cargo clipmon color-theme-sanityinc-tomorrow company company-auctex company-c-headers company-ghc company-ghci
+         company-glsl company-math company-racer company-tern crux dashboard ediprolog edit-server ein ein-mumamo emmet-mode
+         ensime erlang expand-region flx-ido ggtags git-gutter glsl-mode graphviz-dot-mode hl-line+ hydra idris-mode image+
+         indent-guide latex-pretty-symbols latex-preview-pane magit nasm-mode popup-imenu projectile projectile-ripgrep racer
+         rainbow-mode request ripgrep shm slime smartparens ssh-agency tide typescript-mode use-package visual-regexp-steroids
+         w3m web-mode whitespace-cleanup-mode zzz-to-char))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+ '(prettify-symbols-unprettify-at-point (quote right-edge))
  '(projectile-mode t nil (projectile))
+ '(revert-without-query (quote ("\\.pdf")))
  '(safe-local-variable-values (quote ((eval defun))))
  '(show-paren-mode t)
  '(speedbar-default-position (quote left))
@@ -103,4 +121,10 @@
  '(agda2-highlight-typechecks-face ((t (:background "#6699cc" :foreground "#2d2d2d"))))
  '(agda2-highlight-unsolved-constraint-face ((t (:underline "#ffcc66"))))
  '(agda2-highlight-unsolved-meta-face ((t (:underline "#ffcc66"))))
- '(ensime-implicit-highlight ((t (:underline "dim gray")))))
+ '(ensime-implicit-highlight ((t (:underline "dim gray"))))
+ '(idris-active-term-face ((t (:underline "d6d6d6"))))
+ '(idris-prover-processed-face ((t (:underline "#99cc99"))))
+ '(idris-prover-processing-face ((t (:underline "#ffcc66"))))
+ '(idris-semantic-bound-face ((t (:foreground "#cc99cc"))))
+ '(idris-semantic-data-face ((t (:foreground "#f2777a"))))
+ '(idris-semantic-function-face ((t (:foreground "#6699cc")))))

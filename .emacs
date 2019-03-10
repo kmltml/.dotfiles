@@ -1,6 +1,6 @@
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
+             '("melpa" . "http://melpa.org/packages/"))
 
 (package-initialize)
 
@@ -31,6 +31,8 @@
 (setq auto-window-vscroll nil)
 
 (toggle-scroll-bar -1)
+
+(set-fontset-font "fontset-default" '(#x2113 . #x2113) "Consolas")
 
 (setq-default indent-tabs-mode nil)
 
@@ -115,6 +117,13 @@
                                  (+ 1 (line-end-position))))
               (goto-char before))))))))
 
+(defun scala-prettify-compose-predicate (start end s)
+  (and (if (string-equal s "*")
+           (string-match (rx (or whitespace "\n") "*" (or whitespace "\n"))
+                         (buffer-substring-no-properties (- start 1) (+ end 1)))
+         t)
+       (prettify-symbols-default-compose-p start end s)))
+
 (defun toggle-window-split ()
   (interactive)
   (if (= (count-windows) 2)
@@ -143,7 +152,7 @@
 (global-set-key (kbd "C-x |") 'toggle-window-split)
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-    
+
 (setq mouse-wheel-progressive-speed nil)
 
 (setq read-file-name-completion-ignore-case 't)
@@ -162,6 +171,13 @@
   (global-set-key (kbd "C-c SPC") 'company-complete))
 
 (use-package scala-mode
+  :config
+  (add-hook 'scala-mode-hook
+            (lambda ()
+              (push '("*" . #x22c5) prettify-symbols-alist)
+              (setq prettify-symbols-compose-predicate
+                    'scala-prettify-compose-predicate)
+              (prettify-symbols-mode 1)))
   :bind (:map scala-mode-map
               ("C-c ." . scala-split-or-merge-package)))
 
@@ -174,7 +190,7 @@
 
 (use-package indent-guide
   :config
-  (indent-guide-global-mode)  
+  (indent-guide-global-mode)
   (setq-default indent-guide-recursive t)
   (setq-default indent-guide-char "│"))
 
@@ -200,7 +216,9 @@
   :bind (:map projectile-mode-map
          ("C-c p" . projectile-command-map))
   :config
-  (add-to-list 'projectile-globally-ignored-file-suffixes ".class"))
+  (add-to-list 'projectile-globally-ignored-file-suffixes ".class")
+  :bind (:map projectile-mode-map
+              ("C-c p" . 'projectile-command-map)))
 
 (use-package ensime
   :config
@@ -208,7 +226,7 @@
 
 (use-package avy
   :bind (("C-c '" . avy-goto-char-2)
-	 ("C-c \"" . avy-goto-char)))
+         ("C-c \"" . avy-goto-char)))
 
 (use-package ido
   :config
@@ -235,13 +253,48 @@
 ;; Org mode stuff
 (use-package org
   :config
-  (setq org-support-shift-select t))
+  (setq org-support-shift-select t)
+  :bind (:map org-mode-map
+              ("C-c w" . org-retrieve-link-url)))
+
+(defun org-retrieve-link-url ()
+  (interactive)
+  (let* ((link (assoc :link (org-context)))
+         (text (buffer-substring-no-properties (or (nth 1 link) (point-min))
+                                               (or (nth 2 link) (point-max))))
+         (end (string-match-p (regexp-quote "]") text)))
+    (kill-new (if end
+                  (substring text 2 end)
+                text))))
+
+(defun org-dblock-write:dir-listing (params)
+  (let* ((dir (file-name-directory buffer-file-name))
+         (files (seq-filter
+                 (lambda (f) (not (equal f buffer-file-name)))
+                 (directory-files dir :FULL "^[a-zA-Z].+?\\.org")))
+         (subdirs (seq-filter
+                    (lambda (d) (and (not (s-suffix? "/." d))
+                                     (not (s-suffix? "/.." d))
+                                     (file-directory-p d)
+                                     (file-exists-p (concat d "/index.org"))))
+                    (directory-files dir :FULL)))
+         (links (seq-concatenate 'list
+                                 (seq-map (lambda (f) (cons f (file-name-base f)))
+                                          files)
+                                 (seq-map (lambda (d) (cons (concat d "/index.org") (file-name-base d)))
+                                          subdirs))))
+    (when (file-exists-p (concat dir "/../index.org"))
+      (insert (format "- [[%s][..]]\n" (concat dir "/../index.org"))))
+    (dolist (l links)
+      (insert (format "- [[%s][%s]]\n" (car l) (cdr l))))))
 
 ;; LaTeX stuff
 (use-package latex
   :config
   (when (string-equal "windows-nt" system-type)
-    (setq doc-view-ghostscript-program "gswin64c")))
+    (setq doc-view-ghostscript-program "gswin64c"))
+  :bind (:map latex-mode-map
+         ("C-c o" . latex-insert-block)))
 
 
 ;; Haskell
@@ -256,11 +309,16 @@
 (use-package smartparens
   :config
   (smartparens-global-mode nil)
-  (sp-local-pair 'latex-mode "\\[" "\\]")
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
-              (sp-pair "'" nil :actions :rem))))
-
+              (sp-pair "'" nil :actions :rem)))
+  (sp-local-pair 'latex-mode "\\[" "\\]")
+  (sp-local-pair 'agda2-mode "{!" "!}")
+  (sp-local-pair 'agda2-mode "⟪" "⟫")
+  (sp-local-pair 'agda2-mode "⟨" "⟩")
+  (sp-local-pair 'agda2-mode "⟦" "⟧")
+  :bind (("C-c s u" . sp-splice-sexp)
+         ("C-c s r" . sp-rewrap-sexp)))
 
 (use-package dashboard
   :config
@@ -273,9 +331,20 @@
 (use-package zzz-to-char
   :bind (("M-z" . #'zzz-up-to-char)))
 
+(use-package visual-regexp
+  :bind (("C-c r" . vr/query-replace)))
+
 (use-package crux
   :bind (("C-<return>" . crux-smart-open-line-above)
          ("S-<return>" . crux-smart-open-line)
          ("C-c e" . crux-eval-and-replace)
          ("C-c d" . crux-duplicate-current-line-or-region)
          ("C-c k" . crux-kill-whole-line)))
+
+(use-package clipmon
+  :init
+  (add-to-list 'after-init-hook 'clipmon-mode-start))
+
+(use-package whitespace-cleanup-mode
+  :init
+  (global-whitespace-cleanup-mode))
