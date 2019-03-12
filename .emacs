@@ -317,6 +317,7 @@
   :bind (("C-c i" . popup-imenu)))
 
 (use-package smartparens
+  :demand
   :config
   (smartparens-global-mode nil)
   (add-hook 'emacs-lisp-mode-hook
