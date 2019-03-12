@@ -359,3 +359,6 @@
 (use-package whitespace-cleanup-mode
   :config
   (global-whitespace-cleanup-mode))
+
+(use-package nasm-mode
+  :mode ("\\.asm" . nasm-mode))
