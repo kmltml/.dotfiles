@@ -362,3 +362,7 @@
 
 (use-package nasm-mode
   :mode ("\\.asm" . nasm-mode))
+
+(use-package flycheck
+  :config
+  (add-hook 'c-mode-hook 'flycheck-mode))
