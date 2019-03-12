@@ -356,5 +356,5 @@
   (add-to-list 'after-init-hook 'clipmon-mode-start))
 
 (use-package whitespace-cleanup-mode
-  :init
+  :config
   (global-whitespace-cleanup-mode))
