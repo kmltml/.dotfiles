@@ -366,3 +366,7 @@
 (use-package flycheck
   :config
   (add-hook 'c-mode-hook 'flycheck-mode))
+
+(use-package persistent-scratch
+  :config
+  (persistent-scratch-setup-default))
