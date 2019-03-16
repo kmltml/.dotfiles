@@ -51,6 +51,8 @@
             (add-to-list 'prettify-symbols-alist '(">=" . 8805))
             (add-to-list 'prettify-symbols-alist '("<=" . 8804))
             (add-to-list 'prettify-symbols-alist '("NULL" . 8709))
+            (add-to-list 'prettify-symbols-alist '("!=" . 8800))
+            (add-to-list 'prettify-symbols-alist '("!" . 172))
             (prettify-symbols-mode)))
 
 (defun term-dwim ()
