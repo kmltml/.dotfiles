@@ -238,8 +238,8 @@
   (setq ensime-startup-notification nil))
 
 (use-package avy
-  :bind (("C-c '" . avy-goto-char-2)
-         ("C-c \"" . avy-goto-char)))
+  :bind (("C-c a" . avy-goto-char-2)
+         ("C-c A" . avy-goto-char)))
 
 (use-package ido
   :config
