@@ -323,6 +323,7 @@
   :demand
   :config
   (smartparens-global-mode nil)
+  (setq sp-ignore-modes-list (remove 'minibuffer-inactive-mode sp-ignore-modes-list))
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
               (sp-pair "'" nil :actions :rem)))
