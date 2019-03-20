@@ -373,3 +373,14 @@
 (use-package persistent-scratch
   :config
   (persistent-scratch-setup-default))
+
+(use-package erlang
+  :config
+  (add-hook 'erlang-mode-hook
+            (lambda ()
+              (add-to-list 'prettify-symbols-alist '("->" . 8594))
+              (add-to-list 'prettify-symbols-alist '(">=" . 8805))
+              (add-to-list 'prettify-symbols-alist '("=<" . 8804))
+              (add-to-list 'prettify-symbols-alist '("=>" . 8658))
+              (add-to-list 'prettify-symbols-alist '("<=" . 8656))
+              (prettify-symbols-mode))))
