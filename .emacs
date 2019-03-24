@@ -247,6 +247,7 @@
 
 (use-package yasnippet
   :config
+  (add-to-list 'yas-snippet-dirs (concat dotfiles-repo-path "emacs/snippets"))
   (yas-global-mode 1)
   :bind (("C-<tab>" . yas-expand)))
 
