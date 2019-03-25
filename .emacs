@@ -386,3 +386,7 @@
               (add-to-list 'prettify-symbols-alist '("=>" . 8658))
               (add-to-list 'prettify-symbols-alist '("<=" . 8656))
               (prettify-symbols-mode))))
+
+(use-package windmove
+  :config
+  (windmove-default-keybindings 'meta))
