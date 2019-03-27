@@ -387,6 +387,17 @@
               (add-to-list 'prettify-symbols-alist '("=>" . 8658))
               (add-to-list 'prettify-symbols-alist '("<=" . 8656))
               (add-to-list 'prettify-symbols-alist '("||" . 8214))
+              (prettify-symbols-mode)
+              (flycheck-mode)))
+  (add-hook 'erlang-shell-mode-hook
+            (lambda ()
+              (add-to-list 'prettify-symbols-alist '("->" . 8594))
+              (add-to-list 'prettify-symbols-alist '("<-" . 8592))
+              (add-to-list 'prettify-symbols-alist '(">=" . 8805))
+              (add-to-list 'prettify-symbols-alist '("=<" . 8804))
+              (add-to-list 'prettify-symbols-alist '("=>" . 8658))
+              (add-to-list 'prettify-symbols-alist '("<=" . 8656))
+              (add-to-list 'prettify-symbols-alist '("||" . 8214))
               (prettify-symbols-mode))))
 
 (use-package windmove
