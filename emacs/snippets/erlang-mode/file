@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: file
+# key: file
+# --
+-module(`(file-name-base (buffer-file-name))`).
+-export([]).
+
+$0
