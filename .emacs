@@ -211,6 +211,8 @@
   :bind (("C-c w" . er/expand-region)))
 
 (use-package magit
+  :init
+  (load-file (concat dotfiles-repo-path "emacs/dotfiles-update.el"))
   :bind (("C-x g" . magit-status)))
 
 (use-package hydra
