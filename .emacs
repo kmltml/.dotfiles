@@ -258,7 +258,9 @@
 
 (use-package emmet-mode
   :config
-  (add-hook 'html-mode-hook 'emmet-mode))
+  (add-hook 'html-mode-hook 'emmet-mode)
+  :bind (:map emmet-mode-keymap
+              ("C-<return>" . nil)))
 
 (use-package web-mode
   :config
