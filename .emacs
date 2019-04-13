@@ -44,15 +44,18 @@
 (global-set-key (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
 (global-set-key (kbd "C-c c") 'compile)
 
+(defun add-prettify-rules (rules)
+  (setq prettify-symbols-alist (append rules prettify-symbols-alist)))
+
 (add-hook 'c-mode-hook
           (lambda ()
-            (add-to-list 'prettify-symbols-alist '("->" . 8594))
-            (add-to-list 'prettify-symbols-alist '("^" . 8853))
-            (add-to-list 'prettify-symbols-alist '(">=" . 8805))
-            (add-to-list 'prettify-symbols-alist '("<=" . 8804))
-            (add-to-list 'prettify-symbols-alist '("NULL" . 8709))
-            (add-to-list 'prettify-symbols-alist '("!=" . 8800))
-            (add-to-list 'prettify-symbols-alist '("!" . 172))
+            (add-prettify-rules '(("->" . 8594)
+                                  ("^" . 8853)
+                                  (">=" . 8805)
+                                  ("<=" . 8804)
+                                  ("NULL" . 8709)
+                                  ("!=" . 8800)
+                                  ("!" . 172)))
             (prettify-symbols-mode)
             (semantic-mode)))
 
@@ -117,7 +120,7 @@
           (let ((before (point)))
             (previous-line)
             (if (string-match package-line-regexp
-                                (thing-at-point 'line t))
+                              (thing-at-point 'line t))
                 (let ((path-start (progn (string-match "package\\s-+\\(\\sw\\)" line)
                                          (match-beginning 1))))
                   (next-line)
@@ -192,7 +195,7 @@
                     'scala-prettify-compose-predicate)
               (prettify-symbols-mode 1)))
   :bind (:map scala-mode-map
-              ("C-c ." . scala-split-or-merge-package)))
+              ("<apps> ." . scala-split-or-merge-package)))
 
 (use-package git-gutter
   :config
@@ -228,8 +231,6 @@
   (unbind-key "C-<left>" paredit-mode-map))
 
 (use-package projectile
-  :bind (:map projectile-mode-map
-         ("C-c p" . projectile-command-map))
   :config
   (add-to-list 'projectile-globally-ignored-file-suffixes ".class")
   :bind (:map projectile-mode-map
@@ -273,7 +274,7 @@
   :config
   (setq org-support-shift-select t)
   :bind (:map org-mode-map
-              ("C-c w" . org-retrieve-link-url)))
+              ("<apps> w" . org-retrieve-link-url)))
 
 (defun org-retrieve-link-url ()
   (interactive)
@@ -291,11 +292,11 @@
                  (lambda (f) (not (equal f buffer-file-name)))
                  (directory-files dir :FULL "^[a-zA-Z].+?\\.org")))
          (subdirs (seq-filter
-                    (lambda (d) (and (not (s-suffix? "/." d))
-                                     (not (s-suffix? "/.." d))
-                                     (file-directory-p d)
-                                     (file-exists-p (concat d "/index.org"))))
-                    (directory-files dir :FULL)))
+                   (lambda (d) (and (not (s-suffix? "/." d))
+                                    (not (s-suffix? "/.." d))
+                                    (file-directory-p d)
+                                    (file-exists-p (concat d "/index.org"))))
+                   (directory-files dir :FULL)))
          (links (seq-concatenate 'list
                                  (seq-map (lambda (f) (cons f (file-name-base f)))
                                           files)
@@ -311,27 +312,27 @@
   :config
   (when (string-equal "windows-nt" system-type)
     (setq doc-view-ghostscript-program "gswin64c"))
-  :bind (:map latex-mode-map
-         ("C-c o" . latex-insert-block)))
+  :hook (LaTeX-mode . prettify-symbols-mode)
+  :bind (:map LaTeX-mode-map
+              ("<apps> o" . latex-insert-block)))
 
 
 ;; Haskell
 (use-package haskell-mode
   :config
-  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  (add-hook 'haskell-mode-hook 'haskell-indentation-mode))
+  :hook ((haskell-mode . interactive-haskell-mode)
+         (haskell-mode . haskell-indentation-mode)))
 
 (use-package popup-imenu
   :bind (("C-c i" . popup-imenu)))
 
 (use-package smartparens
   :demand
+  :hook ((emacs-lisp-mode . (lambda ()
+                              (sp-pair "'" nil :actions :rem))))
   :config
   (smartparens-global-mode nil)
   (setq sp-ignore-modes-list (remove 'minibuffer-inactive-mode sp-ignore-modes-list))
-  (add-hook 'emacs-lisp-mode-hook
-            (lambda ()
-              (sp-pair "'" nil :actions :rem)))
   (sp-local-pair 'latex-mode "\\[" "\\]")
   (sp-local-pair 'agda2-mode "{!" "!}")
   (sp-local-pair 'agda2-mode "⟪" "⟫")
@@ -355,6 +356,7 @@
   :bind (("C-c r" . vr/query-replace)))
 
 (use-package crux
+  :defer 10
   :bind (("C-<return>" . crux-smart-open-line-above)
          ("S-<return>" . crux-smart-open-line)
          ("C-c e" . crux-eval-and-replace)
@@ -373,8 +375,7 @@
   :mode ("\\.asm" . nasm-mode))
 
 (use-package flycheck
-  :config
-  (add-hook 'c-mode-hook 'flycheck-mode))
+  :hook ((c-mode . flycheck-mode)))
 
 (use-package persistent-scratch
   :config
@@ -382,27 +383,17 @@
 
 (use-package erlang
   :config
-  (add-hook 'erlang-mode-hook
-            (lambda ()
-              (add-to-list 'prettify-symbols-alist '("->" . 8594))
-              (add-to-list 'prettify-symbols-alist '("<-" . 8592))
-              (add-to-list 'prettify-symbols-alist '(">=" . 8805))
-              (add-to-list 'prettify-symbols-alist '("=<" . 8804))
-              (add-to-list 'prettify-symbols-alist '("=>" . 8658))
-              (add-to-list 'prettify-symbols-alist '("<=" . 8656))
-              (add-to-list 'prettify-symbols-alist '("||" . 8214))
-              (prettify-symbols-mode)
-              (flycheck-mode)))
-  (add-hook 'erlang-shell-mode-hook
-            (lambda ()
-              (add-to-list 'prettify-symbols-alist '("->" . 8594))
-              (add-to-list 'prettify-symbols-alist '("<-" . 8592))
-              (add-to-list 'prettify-symbols-alist '(">=" . 8805))
-              (add-to-list 'prettify-symbols-alist '("=<" . 8804))
-              (add-to-list 'prettify-symbols-alist '("=>" . 8658))
-              (add-to-list 'prettify-symbols-alist '("<=" . 8656))
-              (add-to-list 'prettify-symbols-alist '("||" . 8214))
-              (prettify-symbols-mode))))
+  :hook (((erlang-mode erlang-shell-mode) .
+          (lambda ()
+            (add-prettify-rules '(("->" . 8594)
+                                  ("<-" . 8592)
+                                  (">=" . 8805)
+                                  ("=<" . 8804)
+                                  ("=>" . 8658)
+                                  ("<=" . 8656)
+                                  ("||" . 8214)))
+            (prettify-symbols-mode)))
+         (erlang-mode . flycheck-mode)))
 
 (use-package windmove
   :config
