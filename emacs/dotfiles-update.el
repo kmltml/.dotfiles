@@ -20,5 +20,9 @@
     (or (and (null changed-items) (not unpushed))
         (y-or-n-p "There are some changes in .dotfiles repo, exit anyway?"))))
 
-(add-to-list 'kill-emacs-query-functions
-             #'check-for-dotfiles-changes)
+(define-advice delete-frame (:around (f &rest args) check-dotfiles)
+  (when (or (cdr (seq-filter
+                  (lambda (f) (not (equal "F1" (frame-parameter f 'name))))
+                  (frame-list)))
+            (check-for-dotfiles-changes))
+    (apply f args)))
