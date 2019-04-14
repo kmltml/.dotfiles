@@ -43,6 +43,15 @@
 (global-set-key (kbd "<f5>") 'projectile-compile-project)
 (global-set-key (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
 (global-set-key (kbd "C-c c") 'compile)
+(global-set-key (kbd "<insert>") 'iso-transl-ctl-x-8-map)
+(define-key key-translation-map (kbd "<menu>") (kbd "<apps>"))
+
+(defvar greek-insert-map (make-sparse-keymap))
+
+(load-file (concat dotfiles-repo-path "emacs/greek.el"))
+(dolist (p greek-input-pairs)
+  (define-key greek-insert-map (kbd (car p)) (cdr p)))
+(define-key iso-transl-ctl-x-8-map (kbd "g") greek-insert-map)
 
 (defun add-prettify-rules (rules)
   (setq prettify-symbols-alist (append rules prettify-symbols-alist)))
