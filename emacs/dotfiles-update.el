@@ -26,3 +26,6 @@
                   (frame-list)))
             (check-for-dotfiles-changes))
     (apply f args)))
+
+(add-to-list 'kill-emacs-query-functions
+             #'check-for-dotfiles-changes)
