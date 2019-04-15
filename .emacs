@@ -51,7 +51,7 @@
 (load-file (concat dotfiles-repo-path "emacs/greek.el"))
 (dolist (p greek-input-pairs)
   (define-key greek-insert-map (kbd (car p)) (cdr p)))
-(define-key iso-transl-ctl-x-8-map (kbd "g") greek-insert-map)
+(define-key 'iso-transl-ctl-x-8-map (kbd "g") greek-insert-map)
 
 (defun add-prettify-rules (rules)
   (setq prettify-symbols-alist (append rules prettify-symbols-alist)))
