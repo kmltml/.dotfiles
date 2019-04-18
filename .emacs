@@ -94,15 +94,11 @@
   (transpose-lines 1)
   (forward-line -2))
 
-(global-set-key (kbd "M-<up>") 'move-line-up)
-
 (defun move-line-down ()
   (interactive)
   (forward-line 1)
   (transpose-lines 1)
   (forward-line -1))
-
-(global-set-key (kbd "M-<down>") 'move-line-down)
 
 (defun custom-move-to-beginning-of-line ()
   (interactive "^")
@@ -234,7 +230,12 @@
     ("<up>" enlarge-window)
     ("<down>" shrink-window)
     ("<left>" (shrink-window 1 t))
-    ("<right>" (enlarge-window 1 t))))
+    ("<right>" (enlarge-window 1 t)))
+  (defhydra hydra-edit (global-map "C-c")
+    ("k" crux-kill-whole-line)
+    ("d" crux-duplicate-current-line-or-region)
+    ("<up>" move-line-up)
+    ("<down>" move-line-down)))
 
 (use-package paredit
   :config
@@ -370,9 +371,7 @@
   :defer 10
   :bind (("C-<return>" . crux-smart-open-line-above)
          ("S-<return>" . crux-smart-open-line)
-         ("C-c e" . crux-eval-and-replace)
-         ("C-c d" . crux-duplicate-current-line-or-region)
-         ("C-c k" . crux-kill-whole-line)))
+         ("C-c e" . crux-eval-and-replace)))
 
 (use-package clipmon
   :init
