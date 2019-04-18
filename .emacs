@@ -229,10 +229,12 @@
 
 (use-package hydra
   :config
-  (defhydra hydra-resize (global-map "C-c C-r")
+  (defhydra hydra-resize (global-map "C-c R")
     "resize window"
-    (">" enlarge-window)
-    ("<" shrink-window)))
+    ("<up>" enlarge-window)
+    ("<down>" shrink-window)
+    ("<left>" (shrink-window 1 t))
+    ("<right>" (enlarge-window 1 t))))
 
 (use-package paredit
   :config
