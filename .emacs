@@ -353,14 +353,6 @@
   :bind (("C-c s u" . sp-splice-sexp)
          ("C-c s r" . sp-rewrap-sexp)))
 
-(use-package dashboard
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-items '((recents . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (registers . 5))))
-
 (use-package zzz-to-char
   :bind (("M-z" . #'zzz-up-to-char)))
 
