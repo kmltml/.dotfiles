@@ -53,7 +53,7 @@
      (wl . wl-other-frame))))
  '(package-selected-packages
    (quote
-    (ruby-end persistent-scratch srefactor avy cargo clipmon color-theme-sanityinc-tomorrow company company-auctex company-c-headers company-ghc company-ghci company-glsl company-math company-racer company-tern crux dashboard ediprolog edit-server ein ein-mumamo emmet-mode ensime erlang expand-region flx-ido ggtags git-gutter glsl-mode graphviz-dot-mode hl-line+ hydra idris-mode image+ indent-guide latex-pretty-symbols latex-preview-pane magit nasm-mode popup-imenu projectile projectile-ripgrep racer rainbow-mode request ripgrep shm slime smartparens ssh-agency tide typescript-mode use-package visual-regexp-steroids w3m web-mode whitespace-cleanup-mode zzz-to-char)))
+    (which-key ruby-end persistent-scratch srefactor avy cargo clipmon color-theme-sanityinc-tomorrow company company-auctex company-c-headers company-ghc company-ghci company-glsl company-math company-racer company-tern crux dashboard ediprolog edit-server ein ein-mumamo emmet-mode ensime erlang expand-region flx-ido ggtags git-gutter glsl-mode graphviz-dot-mode hl-line+ hydra idris-mode image+ indent-guide latex-pretty-symbols latex-preview-pane magit nasm-mode popup-imenu projectile projectile-ripgrep racer rainbow-mode request ripgrep shm slime smartparens ssh-agency tide typescript-mode use-package visual-regexp-steroids w3m web-mode whitespace-cleanup-mode zzz-to-char)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(prettify-symbols-unprettify-at-point (quote right-edge))
  '(projectile-mode t nil (projectile))

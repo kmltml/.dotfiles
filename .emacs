@@ -407,3 +407,9 @@
 (use-package windmove
   :config
   (windmove-default-keybindings 'meta))
+
+(use-package which-key
+  :demand
+  :config
+  (which-key-setup-side-window-bottom)
+  (which-key-mode))
