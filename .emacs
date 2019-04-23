@@ -235,7 +235,8 @@
     ("k" crux-kill-whole-line)
     ("d" crux-duplicate-current-line-or-region)
     ("<up>" move-line-up)
-    ("<down>" move-line-down)))
+    ("<down>" move-line-down)
+    ("RET" nil)))
 
 (use-package paredit
   :config
