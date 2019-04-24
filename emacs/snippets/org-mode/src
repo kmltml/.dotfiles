@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Babel source
+# key: src
+# --
+
+#+BEGIN_SRC $1 ${2::session}
+$0
+#+END_SRC
