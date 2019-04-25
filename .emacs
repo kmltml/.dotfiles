@@ -31,6 +31,7 @@
 (setq auto-window-vscroll nil)
 
 (toggle-scroll-bar -1)
+(scroll-bar-mode -1)
 
 (set-fontset-font "fontset-default" '(#x2113 . #x2113) "Consolas")
 
@@ -203,6 +204,7 @@
               ("<apps> ." . scala-split-or-merge-package)))
 
 (use-package git-gutter
+  :delight
   :config
   (global-git-gutter-mode t)
   (set-face-background 'git-gutter:modified "#ffcc66")
@@ -210,6 +212,7 @@
   (set-face-background 'git-gutter:deleted  "#f2777a"))
 
 (use-package indent-guide
+  :delight
   :config
   (indent-guide-global-mode)
   (setq-default indent-guide-recursive t)
@@ -244,6 +247,7 @@
   (unbind-key "C-<left>" paredit-mode-map))
 
 (use-package projectile
+  :delight
   :config
   (add-to-list 'projectile-globally-ignored-file-suffixes ".class")
   :bind (:map projectile-mode-map
@@ -371,6 +375,7 @@
   (add-to-list 'after-init-hook 'clipmon-mode-start))
 
 (use-package whitespace-cleanup-mode
+  :delight
   :config
   (global-whitespace-cleanup-mode))
 
@@ -407,3 +412,42 @@
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode))
+
+(use-package spaceline
+  :demand
+  :config
+  (require 'spaceline-segments)
+  (spaceline-define-segment custom-version-control
+    "Version control information."
+    (when vc-mode
+      (powerline-raw
+       (s-trim (concat vc-mode
+                       (when (buffer-file-name)
+                         (pcase (vc-state (buffer-file-name))
+                           (`up-to-date " ")
+                           (`edited " *")
+                           (`added " +")
+                           (`unregistered " ?")
+                           (`removed " -")
+                           (`needs-merge " /")
+                           (`needs-update " ↓")
+                           (`ignored " .")
+                           (_ " _"))))))))
+
+  (spaceline-compile
+    '((buffer-modified
+       :priority 10
+       :face highlight-face)
+      (buffer-id :priority 9)
+      (major-mode :priority 5)
+      ((flycheck-error flycheck-warning flycheck-info)
+       :when active
+       :priority 1)
+      (minor-modes :priority 4))
+    '((projectile-root :priority 2)
+      (custom-version-control :priority 3)
+      (line-column
+       :face highlight-face
+       :priority 10)))
+  (setq spaceline-minor-modes-separator " ")
+  (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
