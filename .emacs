@@ -206,6 +206,9 @@
   :bind (:map scala-mode-map
               ("<apps> ." . scala-split-or-merge-package)))
 
+(use-package lsp-scala
+  :hook (scala-mode . lsp))
+
 (use-package git-gutter
   :delight
   :config
@@ -255,10 +258,6 @@
   (add-to-list 'projectile-globally-ignored-file-suffixes ".class")
   :bind (:map projectile-mode-map
               ("C-c p" . 'projectile-command-map)))
-
-(use-package ensime
-  :config
-  (setq ensime-startup-notification nil))
 
 (use-package avy
   :bind (("C-c a" . avy-goto-char-2)
