@@ -69,6 +69,8 @@
             (prettify-symbols-mode)
             (semantic-mode)))
 
+(define-key c-mode-map (kbd "<apps> m") 'man)
+
 (defun term-dwim ()
   (interactive)
   (if (equalp major-mode 'term-mode)
