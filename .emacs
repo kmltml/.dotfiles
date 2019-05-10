@@ -69,7 +69,8 @@
             (prettify-symbols-mode)
             (semantic-mode)))
 
-(define-key c-mode-map (kbd "<apps> m") 'man)
+(with-eval-after-load 'c-mode
+  (define-key c-mode-map (kbd "<apps> m") 'man))
 
 (defun term-dwim ()
   (interactive)
