@@ -207,6 +207,7 @@
               ("<apps> ." . scala-split-or-merge-package)))
 
 (use-package lsp-scala
+  :demand
   :hook (scala-mode . lsp))
 
 (use-package git-gutter
@@ -411,6 +412,7 @@
 
 (use-package which-key
   :demand
+  :delight
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode))
