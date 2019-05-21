@@ -394,6 +394,10 @@
 
 (use-package erlang
   :config
+  (load-file (concat dotfiles-repo-path "emacs/erlang.el"))
+  :bind
+  (:map erlang-mode-map
+        ("<apps> e" . erlang-export-at-point))
   :hook (((erlang-mode erlang-shell-mode) .
           (lambda ()
             (add-prettify-rules '(("->" . 8594)
