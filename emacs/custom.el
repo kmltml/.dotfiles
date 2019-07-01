@@ -29,7 +29,6 @@
    (quote
     (("\\\\" . λ)
      ("." "∘" haskell-font-lock-dot-is-not-composition))))
- '(haskell-process-path-stack "c:/Users/Kamil/AppData/Roaming/Local/bin/stack.exe")
  '(haskell-process-suggest-hoogle-imports t)
  '(haskell-tags-on-save t)
  '(ido-ignore-files
