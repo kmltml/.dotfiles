@@ -189,11 +189,12 @@
   (global-set-key (kbd "C-x C-r") 'recentf-open-files))
 
 (use-package company
-  :bind (:map company-active-map
+  :bind (("C-c SPC" . company-complete)
+         ("M-/" . company-complete)
+         :map company-active-map
               ("<escape>" . company-abort))
   :config
-  (global-company-mode)
-  (global-set-key (kbd "C-c SPC") 'company-complete))
+  (global-company-mode))
 
 (use-package scala-mode
   :config
