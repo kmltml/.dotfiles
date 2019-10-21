@@ -273,7 +273,8 @@
   :config
   (add-to-list 'yas-snippet-dirs (concat dotfiles-repo-path "emacs/snippets"))
   (yas-global-mode 1)
-  :bind (("C-<tab>" . yas-expand)))
+  :bind (("C-<tab>" . yas-expand)
+         ("C-c y" . yas-expand)))
 
 ;; HTML + JS editting stuff
 (use-package company-tern
@@ -344,8 +345,14 @@
   :hook ((haskell-mode . interactive-haskell-mode)
          (haskell-mode . haskell-indentation-mode)))
 
+(defun custom-popup-imenu (arg)
+  (interactive "P")
+  (when arg
+    (setq imenu--index-alist nil))
+  (popup-imenu))
+
 (use-package popup-imenu
-  :bind (("C-c i" . popup-imenu)))
+  :bind (("C-c i" . custom-popup-imenu)))
 
 (use-package smartparens
   :demand
