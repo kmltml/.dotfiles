@@ -211,6 +211,12 @@
   :demand
   :hook (scala-mode . lsp))
 
+(use-package lsp-ui
+  :bind
+  (("C-c l d" . lsp-ui-doc-glance))
+  :config
+  (setq lsp-ui-doc-enable nil))
+
 (use-package git-gutter
   :delight
   :config
