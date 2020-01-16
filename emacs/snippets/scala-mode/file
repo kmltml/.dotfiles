@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: file
+# key: file
+# --
+class `(file-name-base (buffer-file-name))` {
+
+  $0
+
+}
