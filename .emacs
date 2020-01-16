@@ -482,3 +482,7 @@
        :priority 10)))
   (setq spaceline-minor-modes-separator " ")
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
+
+(use-package typescript-mode
+  :config
+  (put 'typescript-insert-and-indent 'delete-selection nil))
