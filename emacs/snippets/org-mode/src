@@ -3,6 +3,9 @@
 # key: src
 # --
 
-#+BEGIN_SRC $1 ${2::session}
+#+BEGIN_SRC ${1:$$(yas-completing-read "Language: " (delete-dups
+     (seq-map
+      (lambda (l) (substring-no-properties (nth 1 l)))
+      (s-match-strings-all (rx "#+BEGIN_SRC" (+ " ") (group (+ (any "a-z" "A-Z" ?-)))) (buffer-string)))) nil)} $2
 $0
 #+END_SRC

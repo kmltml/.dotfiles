@@ -304,6 +304,15 @@
   :bind (:map org-mode-map
               ("<apps> w" . org-retrieve-link-url)))
 
+(use-package ob
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((dot . t)
+     (emacs-lisp . t)
+     (plantuml . t)
+     (gnuplot . t))))
+
 (defun org-retrieve-link-url ()
   (interactive)
   (let* ((link (assoc :link (org-context)))
