@@ -377,6 +377,7 @@
   (smartparens-global-mode nil)
   (setq sp-ignore-modes-list (remove 'minibuffer-inactive-mode sp-ignore-modes-list))
   (sp-local-pair 'latex-mode "\\[" "\\]")
+  (sp-local-pair 'org-mode "\\[" "\\]")
   (sp-local-pair 'agda2-mode "{!" "!}")
   (sp-local-pair 'agda2-mode "⟪" "⟫")
   (sp-local-pair 'agda2-mode "⟨" "⟩")
