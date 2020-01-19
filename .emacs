@@ -300,7 +300,10 @@
 ;; Org mode stuff
 (use-package org
   :config
-  (setq org-support-shift-select t)
+  (setq org-support-shift-select t
+        org-format-latex-options (plist-put org-format-latex-options
+                                            :scale 1.5))
+
   :bind (:map org-mode-map
               ("<apps> w" . org-retrieve-link-url)))
 
