@@ -207,7 +207,7 @@
   :bind (:map scala-mode-map
               ("<apps> ." . scala-split-or-merge-package)))
 
-(use-package lsp-scala
+(use-package lsp-mode
   :demand
   :hook (scala-mode . lsp))
 
@@ -490,3 +490,7 @@
 (use-package typescript-mode
   :config
   (put 'typescript-insert-and-indent 'delete-selection nil))
+
+(use-package rust-mode
+  :config
+  (setq rust-indent-offset 2))
