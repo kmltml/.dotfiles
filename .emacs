@@ -39,6 +39,8 @@
 
 (setq show-paren-delay 0)
 
+(setq quail-japanese-use-double-n t)
+
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "S-<delete>") 'kill-whole-line)
 (global-set-key (kbd "<f5>") 'projectile-compile-project)
@@ -215,7 +217,13 @@
   :bind
   (("C-c l d" . lsp-ui-doc-glance))
   :config
-  (setq lsp-ui-doc-enable nil))
+  (setq lsp-ui-doc-enable nil
+        lsp-ui-sideline-enable nil))
+
+(use-package lsp-java
+  :config
+  (setq lsp-java-format-enabled nil
+        lsp-java-format-on-type-enabled nil))
 
 (use-package git-gutter
   :delight
