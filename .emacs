@@ -1,15 +1,17 @@
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(package-initialize)
-
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-
-(require 'use-package)
-(require 'subr-x)
+(straight-use-package 'use-package)
 
 (load "~/.emacs.local" 'missing-ok)
 
@@ -42,9 +44,6 @@
 (setq quail-japanese-use-double-n t)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "S-<delete>") 'kill-whole-line)
-(global-set-key (kbd "<f5>") 'projectile-compile-project)
-(global-set-key (kbd "C-;") (lambda () (interactive) (end-of-line) (insert ";")))
 (global-set-key (kbd "C-c c") 'compile)
 (global-set-key (kbd "<insert>") 'iso-transl-ctl-x-8-map)
 (define-key key-translation-map (kbd "<menu>") (kbd "<apps>"))
@@ -184,6 +183,18 @@
 
 (setq read-file-name-completion-ignore-case 't)
 
+(use-package straight
+  :custom
+  (straight-use-package-by-default t))
+
+(use-package delight)
+
+(use-package spinner)
+
+(use-package color-theme-sanityinc-tomorrow
+  :config
+  (load-theme 'sanityinc-tomorrow-eighties))
+
 (use-package recentf
   :config
   (recentf-mode 1)
@@ -191,18 +202,25 @@
   (global-set-key (kbd "C-x C-r") 'recentf-open-files))
 
 (use-package company
-  :bind (("C-c SPC" . company-complete)
-         ("M-/" . company-complete)
+  :delight
+  :bind (("M-/" . company-complete)
          :map company-active-map
               ("<escape>" . company-abort))
   :config
-  (global-company-mode))
+  (global-company-mode)
+  (setq lsp-completion-provider :capf))
 
 (use-package scala-mode
   :config
   (add-hook 'scala-mode-hook
             (lambda ()
-              (push '("*" . #x22c5) prettify-symbols-alist)
+              (add-prettify-rules '(("*" . #x22c5)
+                                    ("->" . 8594)
+                                    ("^" . 8853)
+                                    (">=" . 8805)
+                                    ("<=" . 8804)
+                                    ("!=" . 8800)
+                                    ("!" . 172)))
               (setq prettify-symbols-compose-predicate
                     'scala-prettify-compose-predicate)
               (prettify-symbols-mode 1)))
@@ -210,7 +228,6 @@
               ("<apps> ." . scala-split-or-merge-package)))
 
 (use-package lsp-mode
-  :demand
   :hook (scala-mode . lsp))
 
 (use-package lsp-ui
@@ -224,6 +241,8 @@
   :config
   (setq lsp-java-format-enabled nil
         lsp-java-format-on-type-enabled nil))
+
+(use-package lsp-metals)
 
 (use-package git-gutter
   :delight
@@ -263,10 +282,10 @@
     ("<down>" move-line-down)
     ("RET" nil)))
 
-(use-package paredit
-  :config
-  (unbind-key "C-<right>" paredit-mode-map)
-  (unbind-key "C-<left>" paredit-mode-map))
+;; (use-package paredit
+;;   :config
+;;   (unbind-key "C-<right>" paredit-mode-map)
+;;   (unbind-key "C-<left>" paredit-mode-map))
 
 (use-package projectile
   :delight
@@ -315,14 +334,14 @@
   :bind (:map org-mode-map
               ("<apps> w" . org-retrieve-link-url)))
 
-(use-package ob
-  :config
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((dot . t)
-     (emacs-lisp . t)
-     (plantuml . t)
-     (gnuplot . t))))
+;; (use-package ob
+;;   :config
+;;   (org-babel-do-load-languages
+;;    'org-babel-load-languages
+;;    '((dot . t)
+;;      (emacs-lisp . t)
+;;      (plantuml . t)
+;;      (gnuplot . t))))
 
 (defun org-retrieve-link-url ()
   (interactive)
@@ -357,6 +376,7 @@
 
 ;; LaTeX stuff
 (use-package latex
+  :straight nil
   :config
   (when (string-equal "windows-nt" system-type)
     (setq doc-view-ghostscript-program "gswin64c"))
@@ -381,12 +401,10 @@
   :bind (("C-c i" . custom-popup-imenu)))
 
 (use-package smartparens
-  :demand
-  :hook ((emacs-lisp-mode . (lambda ()
-                              (sp-pair "'" nil :actions :rem))))
   :config
   (smartparens-global-mode nil)
   (setq sp-ignore-modes-list (remove 'minibuffer-inactive-mode sp-ignore-modes-list))
+  (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
   (sp-local-pair 'latex-mode "\\[" "\\]")
   (sp-local-pair 'org-mode "\\[" "\\]")
   (sp-local-pair 'agda2-mode "{!" "!}")
@@ -450,14 +468,12 @@
   (windmove-default-keybindings 'meta))
 
 (use-package which-key
-  :demand
   :delight
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode))
 
 (use-package spaceline
-  :demand
   :config
   (require 'spaceline-segments)
   (spaceline-define-segment custom-version-control
@@ -502,3 +518,5 @@
 (use-package rust-mode
   :config
   (setq rust-indent-offset 2))
+
+(use-package lua-mode)

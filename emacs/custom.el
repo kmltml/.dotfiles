@@ -3,20 +3,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(agda2-highlight-level (quote non-interactive))
+ '(agda2-highlight-level 'non-interactive)
  '(ansi-color-names-vector
    (vector "#515151" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc" "#66cccc" "#cccccc"))
  '(calc-highlight-selections-with-faces t)
  '(company-c-headers-path-system
-   (quote
-    ("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/")))
- '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
+   '("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/"))
  '(custom-safe-themes
-   (quote
-    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "8bb8a5b27776c39b3c7bf9da1e711ac794e4dc9d43e32a075d8aa72d6b5b3f59" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "67e998c3c23fe24ed0fb92b9de75011b92f35d3e89344157ae0d544d50a63a72" "82b67c7e21c3b12be7b569af7c84ec0fb2d62105629a173e2479e1053cff94bd" "9d91458c4ad7c74cf946bd97ad085c0f6a40c370ac0a1cbeb2e3879f15b40553" default)))
- '(ensime-typecheck-idle-interval 2)
- '(ensime-typecheck-interval 10)
- '(ensime-typecheck-when-idle nil)
+   '("58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default))
  '(fci-rule-color "#515151")
  '(flx-ido-mode t)
  '(git-gutter:added-sign " ")
@@ -26,45 +20,39 @@
  '(graphviz-dot-indent-width 2)
  '(haskell-font-lock-symbols t)
  '(haskell-font-lock-symbols-alist
-   (quote
-    (("\\\\" . λ)
-     ("." "∘" haskell-font-lock-dot-is-not-composition))))
+   '(("\\\\" . λ)
+     ("." "∘" haskell-font-lock-dot-is-not-composition)))
  '(haskell-process-suggest-hoogle-imports t)
  '(haskell-tags-on-save t)
  '(ido-ignore-files
-   (quote
-    ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.agdai")))
+   '("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.agdai"))
  '(js-indent-level 2)
- '(magit-diff-refine-hunk (quote all))
+ '(magit-diff-refine-hunk 'all)
  '(menu-bar-mode nil)
- '(neo-theme (quote classic))
- '(neo-vc-integration (quote (face char)))
+ '(neo-theme 'classic)
+ '(neo-vc-integration '(face char))
  '(neo-window-width 40)
  '(nrepl-message-colors
-   (quote
-    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
  '(org-link-frame-setup
-   (quote
-    ((vm . vm-visit-folder-other-frame)
+   '((vm . vm-visit-folder-other-frame)
      (vm-imap . vm-visit-imap-folder-other-frame)
      (gnus . org-gnus-no-new-news)
      (file . find-file)
-     (wl . wl-other-frame))))
+     (wl . wl-other-frame)))
  '(package-selected-packages
-   (quote
-    (lsp-python-ms gnu-elpa-keyring-update gnuplot psci psc-ide purescript-mode scala-mode pinentry lsp-ui company-lsp lsp-scala lua-mode alchemist elixir-mode delight spaceline which-key ruby-end persistent-scratch srefactor avy cargo clipmon color-theme-sanityinc-tomorrow company company-auctex company-c-headers company-ghc company-ghci company-glsl company-math company-racer company-tern crux ediprolog edit-server ein ein-mumamo emmet-mode erlang expand-region flx-ido ggtags git-gutter glsl-mode graphviz-dot-mode hl-line+ hydra idris-mode image+ indent-guide latex-pretty-symbols latex-preview-pane magit nasm-mode popup-imenu projectile projectile-ripgrep racer rainbow-mode request ripgrep shm slime smartparens ssh-agency tide typescript-mode use-package visual-regexp-steroids w3m web-mode whitespace-cleanup-mode zzz-to-char)))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
- '(prettify-symbols-unprettify-at-point (quote right-edge))
+   '(lsp-python-ms gnu-elpa-keyring-update gnuplot psci psc-ide purescript-mode scala-mode pinentry lsp-ui company-lsp lsp-scala lua-mode alchemist elixir-mode delight spaceline which-key ruby-end persistent-scratch srefactor avy cargo clipmon color-theme-sanityinc-tomorrow company company-auctex company-c-headers company-ghc company-ghci company-glsl company-math company-racer company-tern crux ediprolog edit-server ein ein-mumamo emmet-mode erlang expand-region flx-ido ggtags git-gutter glsl-mode graphviz-dot-mode hl-line+ hydra idris-mode image+ indent-guide latex-pretty-symbols latex-preview-pane magit nasm-mode popup-imenu projectile projectile-ripgrep racer rainbow-mode request ripgrep shm slime smartparens ssh-agency tide typescript-mode use-package visual-regexp-steroids w3m web-mode whitespace-cleanup-mode zzz-to-char))
+ '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
+ '(prettify-symbols-unprettify-at-point 'right-edge)
  '(projectile-mode t nil (projectile))
- '(revert-without-query (quote ("\\.pdf")))
- '(safe-local-variable-values (quote ((eval defun))))
+ '(revert-without-query '("\\.pdf"))
+ '(safe-local-variable-values '((eval defun)))
  '(show-paren-mode t)
- '(speedbar-default-position (quote left))
+ '(speedbar-default-position 'left)
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#f2777a")
+   '((20 . "#f2777a")
      (40 . "#f99157")
      (60 . "#ffcc66")
      (80 . "#99cc99")
@@ -81,7 +69,7 @@
      (300 . "#f2777a")
      (320 . "#f99157")
      (340 . "#ffcc66")
-     (360 . "#99cc99"))))
+     (360 . "#99cc99")))
  '(vc-annotate-very-old-color nil)
  '(verilog-auto-newline nil)
  '(web-mode-auto-close-style 2)
