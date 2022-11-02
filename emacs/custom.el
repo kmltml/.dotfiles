@@ -10,7 +10,7 @@
  '(company-c-headers-path-system
    '("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/"))
  '(custom-safe-themes
-   '("58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default))
+   '("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default))
  '(fci-rule-color "#515151")
  '(flx-ido-mode t)
  '(git-gutter:added-sign " ")
@@ -44,7 +44,7 @@
    '(lsp-python-ms gnu-elpa-keyring-update gnuplot psci psc-ide purescript-mode scala-mode pinentry lsp-ui company-lsp lsp-scala lua-mode alchemist elixir-mode delight spaceline which-key ruby-end persistent-scratch srefactor avy cargo clipmon color-theme-sanityinc-tomorrow company company-auctex company-c-headers company-ghc company-ghci company-glsl company-math company-racer company-tern crux ediprolog edit-server ein ein-mumamo emmet-mode erlang expand-region flx-ido ggtags git-gutter glsl-mode graphviz-dot-mode hl-line+ hydra idris-mode image+ indent-guide latex-pretty-symbols latex-preview-pane magit nasm-mode popup-imenu projectile projectile-ripgrep racer rainbow-mode request ripgrep shm slime smartparens ssh-agency tide typescript-mode use-package visual-regexp-steroids w3m web-mode whitespace-cleanup-mode zzz-to-char))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(prettify-symbols-unprettify-at-point 'right-edge)
- '(projectile-mode t nil (projectile))
+ '(projectile-mode t)
  '(revert-without-query '("\\.pdf"))
  '(safe-local-variable-values '((eval defun)))
  '(show-paren-mode t)
