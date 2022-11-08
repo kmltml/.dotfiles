@@ -282,14 +282,10 @@
     ("<down>" move-line-down)
     ("RET" nil)))
 
-;; (use-package paredit
-;;   :config
-;;   (unbind-key "C-<right>" paredit-mode-map)
-;;   (unbind-key "C-<left>" paredit-mode-map))
-
 (use-package projectile
   :delight
   :config
+  (projectile-mode +1)
   (add-to-list 'projectile-globally-ignored-file-suffixes ".class")
   :bind (:map projectile-mode-map
               ("C-c p" . 'projectile-command-map)))
@@ -298,9 +294,14 @@
   :bind (("C-c a" . avy-goto-char-2)
          ("C-c A" . avy-goto-char)))
 
-(use-package ido
+(use-package helm
   :config
-  (ido-mode t))
+  (helm-mode 1)
+  :bind (("C-x b" . helm-mini)
+         ("M-x" . helm-M-x)
+         ("C-x C-f" . helm-find-files)))
+
+(use-package helm-projectile)
 
 (use-package yasnippet
   :config
@@ -402,7 +403,7 @@
 
 (use-package smartparens
   :config
-  (smartparens-global-mode nil)
+  (smartparens-global-mode 1)
   (setq sp-ignore-modes-list (remove 'minibuffer-inactive-mode sp-ignore-modes-list))
   (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
   (sp-local-pair 'latex-mode "\\[" "\\]")
@@ -520,3 +521,5 @@
   (setq rust-indent-offset 2))
 
 (use-package lua-mode)
+
+(load "~/.emacs.d/local-init.el" 'missing-ok)
