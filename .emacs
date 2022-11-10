@@ -228,7 +228,11 @@
               ("<apps> ." . scala-split-or-merge-package)))
 
 (use-package lsp-mode
-  :hook (scala-mode . lsp))
+  :hook (scala-mode . lsp)
+  :bind
+  (("C-c l i" . lsp-goto-implementation)
+   ("C-c l s" . lsp-signature-activate)
+   ("C-c l r" . lsp-find-references)))
 
 (use-package lsp-ui
   :bind
@@ -242,7 +246,9 @@
   (setq lsp-java-format-enabled nil
         lsp-java-format-on-type-enabled nil))
 
-(use-package lsp-metals)
+(use-package lsp-metals
+  :bind
+  (("C-c l m i" . lsp-metals-toggle-show-implicit-arguments)))
 
 (use-package git-gutter
   :delight
@@ -297,6 +303,9 @@
 (use-package helm
   :config
   (helm-mode 1)
+  (add-to-list 'helm-completing-read-handlers-alist
+               '(dired-do-rename . nil))
+  (setq helm-buffer-max-length 60)
   :bind (("C-x b" . helm-mini)
          ("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)))
@@ -476,24 +485,6 @@
 
 (use-package spaceline
   :config
-  (require 'spaceline-segments)
-  (spaceline-define-segment custom-version-control
-    "Version control information."
-    (when vc-mode
-      (powerline-raw
-       (s-trim (concat vc-mode
-                       (when (buffer-file-name)
-                         (pcase (vc-state (buffer-file-name))
-                           (`up-to-date " ")
-                           (`edited " *")
-                           (`added " +")
-                           (`unregistered " ?")
-                           (`removed " -")
-                           (`needs-merge " /")
-                           (`needs-update " ↓")
-                           (`ignored " .")
-                           (_ " _"))))))))
-
   (spaceline-compile
     '((buffer-modified
        :priority 10
@@ -505,7 +496,6 @@
        :priority 1)
       (minor-modes :priority 4))
     '((projectile-root :priority 2)
-      (custom-version-control :priority 3)
       (line-column
        :face highlight-face
        :priority 10)))
