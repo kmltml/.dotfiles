@@ -485,6 +485,7 @@
 
 (use-package spaceline
   :config
+  (require 'spaceline-segments)
   (spaceline-compile
     '((buffer-modified
        :priority 10
