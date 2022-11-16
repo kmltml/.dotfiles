@@ -312,6 +312,10 @@
 
 (use-package helm-projectile)
 
+(use-package helm-rg
+  :bind (:map projectile-command-map
+              ("g" . helm-projectile-rg)))
+
 (use-package yasnippet
   :config
   (add-to-list 'yas-snippet-dirs (concat dotfiles-repo-path "emacs/snippets"))
@@ -411,6 +415,7 @@
   :bind (("C-c i" . custom-popup-imenu)))
 
 (use-package smartparens
+  :demand
   :config
   (smartparens-global-mode 1)
   (setq sp-ignore-modes-list (remove 'minibuffer-inactive-mode sp-ignore-modes-list))
@@ -512,5 +517,7 @@
   (setq rust-indent-offset 2))
 
 (use-package lua-mode)
+
+(use-package kotlin-mode)
 
 (load "~/.emacs.d/local-init.el" 'missing-ok)
