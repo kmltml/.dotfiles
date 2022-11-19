@@ -520,4 +520,6 @@
 
 (use-package kotlin-mode)
 
+(use-package svelte-mode)
+
 (load "~/.emacs.d/local-init.el" 'missing-ok)
