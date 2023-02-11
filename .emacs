@@ -228,7 +228,7 @@
               ("<apps> ." . scala-split-or-merge-package)))
 
 (use-package lsp-mode
-  :hook (scala-mode . lsp)
+  :hook ((scala-mode typescript-mode) . lsp)
   :bind
   (("C-c l i" . lsp-goto-implementation)
    ("C-c l s" . lsp-signature-activate)
@@ -510,7 +510,8 @@
 
 (use-package typescript-mode
   :config
-  (put 'typescript-insert-and-indent 'delete-selection nil))
+  (put 'typescript-insert-and-indent 'delete-selection nil)
+  (setq typescript-indent-level 2))
 
 (use-package rust-mode
   :config
