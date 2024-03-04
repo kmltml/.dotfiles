@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: import circe deriveCodec
+# --
+import io.circe.generic.semiauto.deriveCodec

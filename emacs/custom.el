@@ -7,10 +7,12 @@
  '(ansi-color-names-vector
    (vector "#515151" "#f2777a" "#99cc99" "#ffcc66" "#6699cc" "#cc99cc" "#66cccc" "#cccccc"))
  '(calc-highlight-selections-with-faces t)
+ '(clean-buffer-list-delay-special 600)
+ '(clean-buffer-list-kill-regexps '(".*\\.scala"))
  '(company-c-headers-path-system
    '("/usr/include/" "/usr/local/include/" "/usr/include/c++/5/" "/usr/lib/llvm-3.8/include/"))
  '(custom-safe-themes
-   '("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default))
+   '("04aa1c3ccaee1cc2b93b246c6fbcd597f7e6832a97aaeac7e5891e6863236f9f" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default))
  '(fci-rule-color "#515151")
  '(flx-ido-mode t)
  '(git-gutter:added-sign " ")
@@ -44,7 +46,7 @@
    '(lsp-python-ms gnu-elpa-keyring-update gnuplot psci psc-ide purescript-mode scala-mode pinentry lsp-ui company-lsp lsp-scala lua-mode alchemist elixir-mode delight spaceline which-key ruby-end persistent-scratch srefactor avy cargo clipmon color-theme-sanityinc-tomorrow company company-auctex company-c-headers company-ghc company-ghci company-glsl company-math company-racer company-tern crux ediprolog edit-server ein ein-mumamo emmet-mode erlang expand-region flx-ido ggtags git-gutter glsl-mode graphviz-dot-mode hl-line+ hydra idris-mode image+ indent-guide latex-pretty-symbols latex-preview-pane magit nasm-mode popup-imenu projectile projectile-ripgrep racer rainbow-mode request ripgrep shm slime smartparens ssh-agency tide typescript-mode use-package visual-regexp-steroids w3m web-mode whitespace-cleanup-mode zzz-to-char))
  '(pdf-view-midnight-colors '("#DCDCCC" . "#383838"))
  '(prettify-symbols-unprettify-at-point 'right-edge)
- '(projectile-mode t)
+ '(projectile-mode t nil (projectile))
  '(revert-without-query '("\\.pdf"))
  '(safe-local-variable-values '((eval defun)))
  '(show-paren-mode t)
@@ -111,4 +113,9 @@
  '(idris-prover-processing-face ((t (:underline "#ffcc66"))))
  '(idris-semantic-bound-face ((t (:foreground "#cc99cc"))))
  '(idris-semantic-data-face ((t (:foreground "#f2777a"))))
- '(idris-semantic-function-face ((t (:foreground "#6699cc")))))
+ '(idris-semantic-function-face ((t (:foreground "#6699cc"))))
+ '(smerge-base ((t (:extend t :background "#404033"))))
+ '(smerge-lower ((t (:extend t :background "#334033"))))
+ '(smerge-refined-added ((t (:background "#397039" :inherit smerge-refined-change))))
+ '(smerge-refined-removed ((t (:background "#663737" :inherit smerge-refined-change))))
+ '(smerge-upper ((t (:extend t :background "#403333")))))

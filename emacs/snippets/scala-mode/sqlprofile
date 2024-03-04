@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: MySQL Profile
+# key: sqlprofile
+# --
+import com.taggermedia.persistence.utils.TaggerMySQLProfile.api.*

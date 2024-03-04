@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: scalatest
+# key: scalatest
+# --
+
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
+class ${`(file-name-base (buffer-file-name))`} extends AnyFlatSpec with Matchers {
+
+}

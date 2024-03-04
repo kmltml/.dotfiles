@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Slick Table
+# key: table
+# --
+class ${1:`(file-name-base (buffer-file-name))`}(tag: Tag) extends Table[${1:$(replace-regexp-in-string "Table$" "" yas-text)}](tag, "$2") {
+  def id = column[Long]("ID")
+
+  def * =
+    ( 
+      id
+    ) <> ((${1:$(replace-regexp-in-string "Table$" "" yas-text)}.apply _).tupled, ${1:$(replace-regexp-in-string "Table$" "" yas-text)}.unapply)
+}
