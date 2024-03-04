@@ -257,11 +257,7 @@
               ("<apps> ." . scala-split-or-merge-package)))
 
 (use-package lsp-mode
-  :hook
-  ((scala-mode
-    ; lsp is broken in current godot
-    ;; gdscript-mode
-    ) . lsp)
+  :hook ((scala-mode typescript-mode) . lsp)
   :bind
   (("C-c l i" . lsp-ui-peek-find-implementation)
    ("C-c l s" . lsp-signature-activate)
@@ -586,7 +582,8 @@
 
 (use-package typescript-mode
   :config
-  (put 'typescript-insert-and-indent 'delete-selection nil))
+  (put 'typescript-insert-and-indent 'delete-selection nil)
+  (setq typescript-indent-level 2))
 
 (use-package rust-mode
   :config
@@ -642,5 +639,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
       ("q" nil "cancel" :color blue)))
 
 (use-package string-inflection)
+
+(use-package svelte-mode)
 
 (load "~/.emacs.d/local-init.el" 'missing-ok)
